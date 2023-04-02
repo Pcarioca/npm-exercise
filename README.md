@@ -229,12 +229,12 @@ function printGreeting(language) {
         chalk[language.punctuation.color](language.punctuation.text));
 }
 
-let language = 'en';
+let lang = 'en';
 if (args.length > 0) {
-    language = args[0];
+    lang = args[0];
 }
 
-const languageFile = path.join(__dirname, 'assets', `${language}.json`);
+const languageFile = path.join(__dirname, 'assets', `${lang}.json`);
 const languageData = readFileSync(languageFile, 'utf8');
 const language = JSON.parse(languageData);
 
