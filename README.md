@@ -34,10 +34,10 @@ that prints greets the user in different languages and outputs the text in diffe
 We will display use Gradle to build the application, manage resources and manage dependencies.
 
 ### 1. Create a new directory for your project and navigate to it in the terminal.
-To create a new npm project, create a new folder called `hello-node` run the following command in your terminal (inside the `hello-world` directory):
+To create a new npm project, create a new folder called `hello-npm` run the following command in your terminal (inside the `hello-world` directory):
 ```shell
-mkdir hello-node
-cd hello-node
+mkdir hello-npm
+cd hello-npm
 ```
 
 ### 2. Initialize the npm project
