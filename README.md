@@ -221,6 +221,7 @@ To read the JSON files, add the following line to the `index.js` file:
 ```js
 import { readFileSync } from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 
 function printGreeting(language) {
     console.log(chalk[language.greeting.color](language.greeting.text),
