@@ -259,7 +259,7 @@ To make the application executable, add the following line as the first line to 
 ```js
 #!/usr/bin/env node
 ```
-Add a new property to your package.json file called bin that specifies the name of the executable file you want to create.
+Add a new property to your `package.json` file called bin that specifies the name of the executable file you want to create.
 ```json
 {
     ...
@@ -291,13 +291,15 @@ This command will install the `typescript` and `ts-node` packages and add them t
   "version": "1.0.0",
   ...
   "dependencies": {
-    "chalk": "^5.0.0",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.5"
+    "chalk": "^5.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
   }
 }
 ```
-This will also create a tsconfig.json file in the root of your project. The tsconfig.json file will look like this:
+
+### 12. Create a tsconfig.json file
+Create a `tsconfig.json` file in the root of your project. The tsconfig.json file will look like this:
 ```json
 {
   "compilerOptions": {
@@ -309,3 +311,60 @@ This will also create a tsconfig.json file in the root of your project. The tsco
   "include": ["src/**/*.ts"]
 }
 ```
+This will tell the Typescript compiler to compile all Typescript files in the src folder and output the compiled Javascript files to the dist folder.
+
+### 13. Create a src folder
+Create a new folder called src to store your Typescript files.
+```shell
+mkdir src
+```
+### 14. Create a src/index.ts file
+You can delete the `index.js` file.
+```shell
+rm index.js
+```
+Create a new file called `index.ts` in the src folder.
+```ts
+import chalk from 'chalk';
+import en from './assets/en.json';
+import es from './assets/es.json';
+import de from './assets/de.json';
+import ro from './assets/ro.json';
+
+interface Greeting {
+  greeting: string;
+  person: string;
+  punctuation: string;
+}
+
+function printGreeting(color: string, greeting: string, person: string, punctuation: string) {
+  console.log(chalk[color](`${greeting} ${person}${punctuation}`));
+}
+
+const greetings: Greeting[] = [en, es, de, ro];
+const colors = ['red', 'green', 'blue', 'yellow'];
+
+for (let i = 0; i < greetings.length; i++) {
+  const { greeting, person, punctuation } = greetings[i];
+  const color = colors[i % colors.length];
+  printGreeting(color, greeting, person, punctuation);
+}
+```
+### 15. Compile the Typescript code
+Add a new NPM script to your package.json file that compiles the TypeScript code to JavaScript.
+```json
+{
+  ...
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  }
+}
+```
+
+Run the following command in your terminal to run the application with `ts-node`:
+```shell
+npm start
+```
+Verify that the output is correct.
+
