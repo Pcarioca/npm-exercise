@@ -229,6 +229,8 @@ function printGreeting(language) {
         chalk[language.punctuation.color](language.punctuation.text));
 }
 
+const args = process.argv.slice(2);
+
 let lang = 'en';
 if (args.length > 0) {
     lang = args[0];
