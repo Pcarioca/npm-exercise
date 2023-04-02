@@ -12,7 +12,7 @@ To install Node and NPM using nvm on Linux, run the following command in your te
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ```
-This command will install nvm. To test if nvm is installed correctly, run `nvm --version` in your terminal. You should see something like this:
+This command will install nvm. To test if nvm is installed correctly, run `nvm --version` in **a new terminal instance**. You should see something like this:
 ```
 0.39.0
 ```
@@ -214,14 +214,35 @@ const fs = require('fs');
 const path = require('path');
 
 function printGreeting(language) {
-    console.log(chalk[language.greeting.color](language.greeting.text + ' '),
-        chalk[language.person.color](language.person.text + ' '),
+    console.log(chalk[language.greeting.color](language.greeting.text),
+        chalk[language.person.color](language.person.text),
         chalk[language.punctuation.color](language.punctuation.text));
 }
 
-const languageFile = path.join(__dirname, 'assets', `${args[0]}.json`);
+let language = 'en';
+if (args.length > 0) {
+    language = args[0];
+}
+
+const languageFile = path.join(__dirname, 'assets', `${language}.json`);
 const languageData = readFileSync(languageFile, 'utf8');
 const language = JSON.parse(languageData);
 
 printGreeting(language);
+```
+
+### 9. Run the application
+Run the following command in your terminal, with all language options:
+```shell
+npm start es
+```
+Verify that the output is correct for each language.
+
+### 10. Make the language an optional argument
+To make the language an optional argument, add the following line to the `index.js` file:
+```js
+const args = process.argv.slice(2);
+
+
+
 ```
