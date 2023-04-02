@@ -121,6 +121,15 @@ To use the `chalk` package, add the following line to the `index.js` file:
 ```js
 console.log(chalk.blue('Hello world!'));
 ```
+
+Make the node application a module by adding the following line to the `package.json` file:
+```json
+{
+    ...
+    "type": "module"
+}
+```
+
 Run the following command in your terminal:
 ```shell
 npm start
