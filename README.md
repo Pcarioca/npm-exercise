@@ -221,7 +221,6 @@ To read the JSON files, add the following line to the `index.js` file:
 ```js
 import { readFileSync } from 'fs';
 import path from 'path';
-```
 
 function printGreeting(language) {
     console.log(chalk[language.greeting.color](language.greeting.text),
@@ -289,5 +288,17 @@ This command will install the `typescript` and `ts-node` packages and add them t
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
   }
+}
+```
+This will also create a tsconfig.json file in the root of your project. The tsconfig.json file will look like this:
+```json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"]
 }
 ```
