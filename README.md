@@ -354,6 +354,8 @@ function printGreeting(language: Language) {
     console.log(`${chalk[language.greeting.color](language.greeting.text)} ${chalk[language.person.color](language.person.text)}${chalk[language.punctuation.color](language.punctuation.text)}`);
 }
 
+const args: string[] = process.argv.slice(2);
+
 let lang = 'en';
 if (args.length > 0) {
     lang = args[0];
@@ -382,4 +384,6 @@ Run the following command in your terminal to run the application with `ts-node`
 npm start
 ```
 Verify that the output is correct.
+
+###
 
