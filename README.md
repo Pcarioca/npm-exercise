@@ -325,30 +325,45 @@ rm index.js
 ```
 Create a new file called `index.ts` in the src folder.
 ```ts
+import { readFileSync } from 'fs';
+import path from 'path';
 import chalk from 'chalk';
-import en from './assets/en.json';
-import es from './assets/es.json';
-import de from './assets/de.json';
-import ro from './assets/ro.json';
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import en from '../assets/en.json';
+import es from '../assets/es.json';
+import de from '../assets/de.json';
+import ro from '../assets/ro.json';
 
 interface Greeting {
-  greeting: string;
-  person: string;
-  punctuation: string;
+    text: string;
+    color: string;
 }
 
-function printGreeting(color: string, greeting: string, person: string, punctuation: string) {
-  console.log(chalk[color](`${greeting} ${person}${punctuation}`));
+interface Language {
+    greeting: Greeting;
+    person: Greeting;
+    punctuation: Greeting;
 }
 
-const greetings: Greeting[] = [en, es, de, ro];
-const colors = ['red', 'green', 'blue', 'yellow'];
 
-for (let i = 0; i < greetings.length; i++) {
-  const { greeting, person, punctuation } = greetings[i];
-  const color = colors[i % colors.length];
-  printGreeting(color, greeting, person, punctuation);
+function printGreeting(language: Language) {
+    console.log(`${chalk[language.greeting.color](language.greeting.text)} ${chalk[language.person.color](language.person.text)}${chalk[language.punctuation.color](language.punctuation.text)}`);
 }
+
+let lang = 'en';
+if (args.length > 0) {
+    lang = args[0];
+}
+
+const languageFile: string = path.join(__dirname, 'assets', `${lang}.json`);
+const languageData: string = readFileSync(languageFile, 'utf8');
+const language: Language = JSON.parse(languageData);
+
+printGreeting(language);
 ```
 ### 15. Compile the Typescript code
 Add a new NPM script to your package.json file that compiles the TypeScript code to JavaScript.
