@@ -115,7 +115,7 @@ Hello World!
 ### 6. Hello World with Chalk
 To use the `chalk` package, add the following line to the `index.js` file:
 ```js
-const chalk = require('chalk');
+import chalk from 'chalk';
 ```
 To use the `chalk` package, add the following line to the `index.js` file:
 ```js
@@ -210,8 +210,9 @@ For example, assets/en.json for English, assets/es.json for Spanish, assets/de.j
 ### 8. Read the JSON files and print the greeting
 To read the JSON files, add the following line to the `index.js` file:
 ```js
-const fs = require('fs');
-const path = require('path');
+import { readFileSync } from 'fs';
+import path from 'path';
+```
 
 function printGreeting(language) {
     console.log(chalk[language.greeting.color](language.greeting.text),
@@ -238,11 +239,46 @@ npm start es
 ```
 Verify that the output is correct for each language.
 
-### 10. Make the language an optional argument
-To make the language an optional argument, add the following line to the `index.js` file:
+### 10. Make the application executable
+To make the application executable, add the following line as the first line to the `index.js` file:
 ```js
-const args = process.argv.slice(2);
+#!/usr/bin/env node
+```
+Add a new property to your package.json file called bin that specifies the name of the executable file you want to create.
+```json
+{
+    ...
+    "bin": {
+        "hello-npm": "index.js"
+    }
+}
+```
 
+Install the package globally:
+```shell
+npm install -g
+```
+Run the following command in your terminal, with all language options:
+```shell
+hello-npm es
+```
+Verify that the output is correct for each language.
 
-
+### 11. Adding Typescript
+To add Typescript, run the following command in your terminal:
+```shell
+npm install typescript ts-node
+```
+This command will install the `typescript` and `ts-node` packages and add them to the `package.json` file. The `package.json` file will look like this:
+```json
+{
+  "name": "hello-npm",
+  "version": "1.0.0",
+  ...
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
 ```
