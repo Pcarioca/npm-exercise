@@ -1,0 +1,31 @@
+{
+  "name": "sef_lab",
+  "version": "1.0.0",
+  "description": "trial project for sef lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pcarioca/npm-exercise.git"
+  },
+  "keywords": [
+    "sef-npm"
+  ],
+  "author": "Andrei Munteanu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pcarioca/npm-exercise/issues"
+  },
+  "homepage": "https://github.com/Pcarioca/npm-exercise#readme",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  },
+  "scripts": {
+        "start": "node index.js"
+    },
+  "bin": {
+        "hello-npm": "index.js"
+  }
+}
